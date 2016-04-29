@@ -1,0 +1,57 @@
+/*!
+ *  lForm.bootstrap by Leonardo Hernández @lork_mc - http://codeaink.com
+ * -------------------------- */
+@font-face {
+	font-family: 'lForm';
+	src: url('../fonts/lForm.eot?7511769');
+	src: url('../fonts/lForm.eot?7511769#iefix') format('embedded-opentype'),
+	   url('../fonts/lForm.woff?7511769') format('woff'),
+	   url('../fonts/lForm.ttf?7511769') format('truetype'),
+	   url('../fonts/lForm.svg?7511769#lForm') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+     
+     
+.lF-icons{
+	font-family: "lForm";
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+	display: inline-block;
+	text-decoration: inherit;
+	width: 1em;
+	margin-right: .2em;
+	text-align: center;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1em;
+	margin-left: .2em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.giros {
+	-webkit-animation: giros 2s infinite linear;
+	animation: giros 2s infinite linear;
+}
+@-webkit-keyframes giros {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes giros {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}

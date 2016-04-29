@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>lForm.bootstrap</title>
+  <meta charset="utf-8" />
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+  <script src="dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/lForm.bootstrap.css">
+  <script type="text/javascript" src="../js/lForm.bootstrap.js"></script>
+</head>
+  <body>
+    <div class="panel-body">
+            <h1>Ejemplo 2: Password e ignorar un campo</h1>
+            <fieldset>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Nombre" id="inputNombre" type="text">
+                </div>
+                <div class="form-group">
+                  <label>Input que sera ignorado</label>
+                    <input class="form-control" placeholder="Este input sera ignorado" id="inputApellido" type="text" data-ignorar="true">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Cedula" id="inputCedula" type="text">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="email" id="inputEmail" type="text">
+                </div>
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="generador">Generar clave</button>
+                  </span>
+                  <input type="text" class="form-control" id="inputPassword">
+                </div>
+                <button class="login-lightbox btn btn-default" id="registrar">Registrar </button>
+            </fieldset>
+    </div>
+  </body>
+</html>
+<script type="text/javascript" src="js/funciones2.js"></script>

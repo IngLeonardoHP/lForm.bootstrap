@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2016 by original authors @ codeaink.com</metadata>
+<defs>
+<font id="lForm" horiz-adv-x="1000" >
+<font-face font-family="lForm" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="arrows-cw" unicode="&#xe806;" d="M707 700l150 150v-405h-405l153 153q-77 62-176 62-111 0-193-76t-92-186h-143q9 170 133 287t295 117q157 0 278-102z m-278-660q111 0 193 76t91 186h143q-9-170-133-287t-294-117q-158 0-279 102l-150-150v405h405l-153-153q78-62 177-62z" horiz-adv-x="857" />
+</font>
+</defs>
+</svg>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lForm.bootstrap</title>
+	<meta charset="utf-8" />
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+  <script src="dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/lForm.bootstrap.css">
+  <script type="text/javascript" src="../js/lForm.bootstrap.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default" style="margin-bottom: 0">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+      	</button>
+      	<a class="navbar-brand" href="http://codeaink.com/">
+        	<img alt="Brand" src="img/codea.png" style="height: 20px">
+      	</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#introduccion">Introducción</a></li>
+        <li><a href="#documentacion">Documentación</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ejemplos <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#simple">Simple</a></li>
+            <li><a href="#clave">Contraseña</a></li>
+            <li><a href="#btn">Button</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/IngLeonardoHP/lForm.bootstrap">Descargar</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="jumbotron">
+  <div class="container">
+    <center>
+    	<h2>lForm.bootstrap</h2>
+    	<h1>Leonardo Hernández</h1>
+    </center>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+  	<div class="col-md-12">
+      <h2 id="introduccion">Introducción</h2>
+      <hr/>
+      <p><b>Plugins</b> para el manejo de <b>ajax en form de html5 para Bootstrap 3.x</b>, ofrece validacion de campos input, textarea y select. Tambien un generador de password alfanumerico con la opcion de incluir caracteres especiales.</p>
+      <p><b>lForm.bootstrap</b> maneja el estado del boton durante el envio de datos con opciones multiples para la visualización del usuario.</p>
+      <p>Se <b>mejora la velocidad con la que el desarrollador codifica</b> al momento de hacer validaciones</p>
+      <p>Proximamente incluirá en el ajax envio de imágenes</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2 id="documentacion">Documentación</h2>
+      <hr/>
+      <h4>Descargar</h4>
+      <p>Descargar la libreria <a href="https://github.com/IngLeonardoHP/lForm.bootstrap">aquí</a> e incluya la carpeta en su proyecto.</p>
+      <h4>Incluir la libreria</h4>
+      <blockquote>
+        <p>
+        <pre class="pre">
+          &ltlink rel="stylesheet" href="lForm.bootstrap/css/lForm.bootstrap.css">
+          &ltscript type="text/javascript" src="lForm.bootstrap/js/lForm.bootstrap.js">&lt/script>
+        </pre>
+        </p>
+      </blockquote>
+      <h4>Palabras clave <b>JS</b></h4>
+      <blockquote>
+        <p>
+        <pre class="pre">
+          $.validarInput('#contenedor');
+          //Retorna 0 o 1, Esta funcion recibe un contenedor donde se encuentran los input`s a evaluar, si alguno esta vacio, lo señaliza y retorna 0, en caso contrario retorna 1.
+          $.validarTextarea('#contenedor');
+          //Retorna 0 o 1, Esta funcion recibe un contenedor donde se encuentran los textarea`s a evaluar, si alguno esta vacio, lo señaliza y retorna 0, en caso contrario retorna 1.
+          $.validarSelect('#contenedor');
+          //Retorna 0 o 1, Esta funcion recibe un contenedor donde se encuentran los select`s a evaluar, si la opcion seleccionada tiene valor 0, lo señaliza y retorna 0, en caso contrario retorna 1.
+          $.password(int,boolean);
+          //Retorna una cadena de caracteres alfanumerico, ejemplo "Lsj25a9y!.@ada", ideal generar claves, el primer parametro es la longitud de la cadena y el segundo es opcional y hace referencia a si se quieren o no caracteres especiales.
+
+          btn.cargando(string,boolean,boolean);
+          //Inicializa el btn cargando, recibe 3 parametros, el primero el texto que aparece en el btn mientras esta cargando, el segundo si se desea desactivar el btn durante la carga y el ultimo si se deseea animar el btn.
+          btn.restaurar();
+          //Restaura el btn a sus valores iniciales.
+        </pre>
+        </p>
+      </blockquote>
+      <h4>Opciones <b>HTML5</b></h4>
+      <blockquote>
+      <p>Ignorar un campo</p>
+        <p>
+        <pre class="pre">
+          &ltinput class="form-control" <b>placeholder="Este input sera ignorado"</b> id="inputIgnorado" type="text" <b>data-ignorar="true"</b>>
+        </pre>
+        </p>
+      </blockquote>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Ejemplos</h2>
+      <hr/>
+      <h4 id="simple">Simple <a href="ejemplo1.html">Ver</a></h4>
+      <p>index.html</p>
+      <pre class="pre">
+&lt!DOCTYPE html>
+&lthtml>
+&lthead>
+  &lttitle>lForm.bootstrap&lt/title>
+  &ltmeta charset="utf-8" />
+  &ltscript src="js/jquery-1.11.3.min.js">&lt/script>
+  &ltlink rel="stylesheet" href="dist/css/bootstrap.min.css">
+  &ltscript src="dist/js/bootstrap.min.js">&lt/script>
+  &ltlink rel="stylesheet" href="../css/lForm.bootstrap.css">
+  &ltscript type="text/javascript" src="../js/lForm.bootstrap.js">&lt/script>
+&lt/head>
+  &ltbody>
+    &ltdiv class="panel-body">
+            &lth1>Ejemplo 1&lt/h1>
+            &ltfieldset>
+                &ltdiv class="form-group">
+                    &ltinput class="form-control" placeholder="Nombre" id="inputNombre" type="text">
+                &lt/div>
+                &ltdiv class="form-group">
+                    &ltinput class="form-control" placeholder="Cedula" id="inputCedula" type="text">
+                &lt/div>
+                &ltdiv class="form-group">
+                    &ltinput class="form-control" placeholder="email" id="inputEmail" type="text">
+                &lt/div>
+                &ltdiv class="form-group">
+                    &ltinput class="form-control" id="inputPassword" placeholder="contraseña" type="password" value="" >
+                &lt/div>
+                &ltdiv class="form-group">
+                    &lttextarea class="form-control" id="textarea">&lt/textarea>
+                &lt/div>
+                &ltdiv class="form-group">
+                    &ltselect class="form-control">
+                      &ltoption value="0">0&lt/option>
+                      &ltoption value="1">1&lt/option>
+                      &ltoption value="2">2&lt/option>
+                      &ltoption value="3">3&lt/option>
+                    &lt/select>
+                &lt/div>
+                &ltbutton class="login-lightbox btn btn-primary" id="registrar">Registrar &lt/button>
+            &lt/fieldset>
+    &lt/div>
+  &lt/body>
+&lt/html>
+&ltscript type="text/javascript" src="js/funciones.js"></script>
+      </pre>
+      <p>funciones.js</p>
+      <pre class="pre">
+$("#registrar").click(function(){
+  var btn=$(this);
+  if($.validarInput(".panel-body")){
+      btn.cargando("Registrando",true,true);
+      setTimeout(function(){
+          btn.restaurar();
+      },2000);
+  }
+});
+      </pre>
+
+      <h4 id="clave">Password e Ignorar un campo <a href="ejemplo2.html">Ver</a></h4>
+      <p>index.html</p>
+      <pre class="pre">
+&lt!DOCTYPE html>
+&lthtml>
+&lthead>
+  &lttitle>lForm.bootstrap&lt/title>
+  &ltmeta charset="utf-8" />
+  &ltscript src="js/jquery-1.11.3.min.js">&lt/script>
+  &ltlink rel="stylesheet" href="dist/css/bootstrap.min.css">
+  &ltscript src="dist/js/bootstrap.min.js">&lt/script>
+  &ltlink rel="stylesheet" href="../css/lForm.bootstrap.css">
+  &ltscript type="text/javascript" src="../js/lForm.bootstrap.js">&lt/script>
+&lt/head>
+  &ltbody>
+    &ltdiv class="panel-body">
+            &lth1>Ejemplo 2: Password e ignorar un campo&lt/h1>
+            &ltfieldset>
+                &ltdiv class="form-group">
+                    &ltinput class="form-control" placeholder="Nombre" id="inputNombre" type="text">
+                &lt/div>
+                &ltdiv class="form-group">
+                  &ltlabel>Input que sera ignorado&lt/label>
+                    &ltinput class="form-control" <b>placeholder="Este input sera ignorado"</b> id="inputApellido" type="text" <b>data-ignorar="true"</b>>
+                &lt/div>
+                &ltdiv class="form-group">
+                    &ltinput class="form-control" placeholder="Cedula" id="inputCedula" type="text">
+                &lt/div>
+                &ltdiv class="form-group">
+                    &ltinput class="form-control" placeholder="email" id="inputEmail" type="text">
+                &lt/div>
+                &ltdiv class="input-group">
+                  &ltspan class="input-group-btn">
+                    &ltbutton class="btn btn-default" type="button" id="generador">Generar clave&lt/button>
+                  &lt/span>
+                  &ltinput type="text" class="form-control" id="inputPassword">
+                &lt/div>
+                &ltbutton class="login-lightbox btn btn-default" id="registrar">Registrar &lt/button>
+            &lt/fieldset>
+    &lt/div>
+  &lt/body>
+&lt/html>
+&ltscript type="text/javascript" src="js/funciones2.js">&lt/script>
+      </pre>
+      <p>funciones2.js</p>
+      <pre class="pre">
+$("#registrar").click(function(){
+  var btn=$(this);
+  if($.validarInput(".panel-body")){
+      btn.cargando("Registrando",true,true);
+      setTimeout(function(){
+          btn.restaurar();
+      },2000);
+  }
+});
+$("#generador").click(function(){
+  $("#inputPassword").val($.password(12,true));
+});
+      </pre>
+
+      <h4 id="btn">Button <a href="ejemplo3.html">Ver</a></h4>
+      <p>index.html</p>
+      <pre class="pre">
+&lt!DOCTYPE html>
+&lthtml>
+&lthead>
+  &lttitle>lForm.bootstrap&lt/title>
+  &ltmeta charset="utf-8" />
+  &ltscript src="js/jquery-1.11.3.min.js">&lt/script>
+  &ltlink rel="stylesheet" href="dist/css/bootstrap.min.css">
+  &ltscript src="dist/js/bootstrap.min.js">&lt/script>
+  &ltlink rel="stylesheet" href="../css/lForm.bootstrap.css">
+  &ltscript type="text/javascript" src="../js/lForm.bootstrap.js">&lt/script>
+&lt/head>
+  &ltbody>
+    &ltdiv class="panel-body">
+            &lth1>Ejemplo 3&lt/h1>
+            &ltfieldset>
+                &ltbutton class="login-lightbox btn btn-default" id="simple">Simple &lt/button>
+                &ltbutton class="login-lightbox btn btn-primary" id="desactivo">Desactivo &lt/button>
+                &ltbutton class="login-lightbox btn btn-success" id="animado">Animado &lt/button>
+                &ltbutton class="login-lightbox btn btn-danger" id="completo">completo &lt/button>
+                &ltbutton class="login-lightbox btn btn-default" id="generador">Password &lt/button>
+            &lt/fieldset>
+    &lt/div>
+  &lt/body>
+&lt/html>
+&ltscript type="text/javascript" src="js/funciones3.js">&lt/script>
+      </pre>
+      <p>funciones2.js</p>
+      <pre class="pre">
+$("#simple").click(function(){
+  var btn=$(this);
+  btn.cargando("Mensaje");
+  setTimeout(function(){
+      btn.restaurar();
+  },2000);
+});
+$("#desactivo").click(function(){
+  var btn=$(this);
+  btn.cargando("Mensaje",true);
+  setTimeout(function(){
+      btn.restaurar();
+  },2000);
+});
+$("#animado").click(function(){
+  var btn=$(this);
+  btn.cargando("Registrando",false,true);
+  setTimeout(function(){
+      btn.restaurar();
+  },2000);
+});
+$("#completo").click(function(){
+  var btn=$(this);
+  btn.cargando("Registrando",true,true);
+  setTimeout(function(){
+      btn.restaurar();
+  },2000);
+});
+$("#generador").click(function(){
+  alert($.password(12,true));
+});
+      </pre>
+    </div>
+  </div>
+</div>
+</body>
+</html>
