@@ -94,15 +94,34 @@
           //Inicializa el btn cargando, recibe 3 parametros, el primero el texto que aparece en el btn mientras esta cargando, el segundo si se desea desactivar el btn durante la carga y el ultimo si se deseea animar el btn.
           btn.restaurar();
           //Restaura el btn a sus valores iniciales.
+
+          $.limpiarCampos(".panel-body");
+          //Limpiar campos input del contenedor
         </pre>
         </p>
       </blockquote>
       <h4>Opciones <b>HTML5</b></h4>
       <blockquote>
-      <p>Ignorar un campo</p>
+        <p>Ignorar un campo</p>
         <p>
         <pre class="pre">
+          <b>data-ignorar="true"</b>
+          Dentro del input que se desea ignorar, Ejemplo:
           &ltinput class="form-control" <b>placeholder="Este input sera ignorado"</b> id="inputIgnorado" type="text" <b>data-ignorar="true"</b>>
+        </pre>
+        </p>
+      </blockquote>
+      <blockquote>
+        <p>Longitud maxima y minima</p>
+        <p>
+        <pre class="pre">
+          <b>data-lengthMax="int"</b>
+          Dentro del input que se desea limitar, Ejemplo:
+          &ltinput class="form-control" <b>placeholder="Este input sera limitado"</b> id="inputIgnorado" type="text" <b>data-lengthMax="12"</b>>
+
+          <b>data-lengthMin="int"</b>
+          Dentro del input que se desea limitar, Ejemplo:
+          &ltinput class="form-control" <b>placeholder="Este input sera limitado"</b> id="inputIgnorado" type="text" <b>data-lengthMin="2"</b>>
         </pre>
         </p>
       </blockquote>
@@ -131,10 +150,10 @@
             &lth1>Ejemplo 1&lt/h1>
             &ltfieldset>
                 &ltdiv class="form-group">
-                    &ltinput class="form-control" placeholder="Nombre" id="inputNombre" type="text">
+                    &ltinput class="form-control" placeholder="Nombre" id="inputNombre" type="text" data-lengthMax="12">
                 &lt/div>
                 &ltdiv class="form-group">
-                    &ltinput class="form-control" placeholder="Cedula" id="inputCedula" type="text">
+                    &ltinput class="form-control" placeholder="Cedula" id="inputCedula" type="text" data-lengthMin="4">
                 &lt/div>
                 &ltdiv class="form-group">
                     &ltinput class="form-control" placeholder="email" id="inputEmail" type="text">
@@ -168,6 +187,7 @@ $("#registrar").click(function(){
       btn.cargando("Registrando",true,true);
       setTimeout(function(){
           btn.restaurar();
+          $.limpiarCampos(".panel-body");
       },2000);
   }
 });

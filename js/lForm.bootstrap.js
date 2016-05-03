@@ -1,6 +1,6 @@
 /*!
  *  lForm.bootstrap Por Leonardo Hernández @ingleonardohp - http://codeaink.com
- version 1.0.0
+ version 1.0.1
  * -------------------------- */
 $.extend({
     //Genera una cadena de caracteres alfanumero con opcion de caracteres especiales
@@ -53,6 +53,17 @@ $.extend({
                 return 1;
             }
         }
+    },
+    limpiarCampos:function(contenedor){
+        $(contenedor+" input").each(function(){
+            $(this).val("");
+        });
+        $(contenedor+" textarea").each(function(){
+            $(this).val("");
+        });
+        $(contenedor+" select option[value=0]").each(function(){
+            $(this).attr("selected","selected");
+        });
     }
 });
 
@@ -86,12 +97,28 @@ jQuery.fn.extend({
     function_val:function(issues){
         issues=issues;
         if(!$(this).data("ignorar")){
+            if($(this).val().length<$(this).data("lengthmin")){
+                issues++;
+                $(this).after('<div class="alert alert-danger" role="alert">El minimo de caractéres requeridos son '+$(this).data("lengthmin")+'.</div>');
+                $(this).focus(function(){
+                    $(this).siblings('.alert-danger').remove();
+                });
+            }
             if($(this).val().length==0){
                 issues++;
                 $(this).after('<div class="alert alert-danger" role="alert">Campo requerido.</div>');
                 $(this).focus(function(){
                     $(this).siblings('.alert-danger').remove();
                 });
+            }
+            if($(this).data("lengthmax")){
+                if($(this).val().length>$(this).data("lengthmax")){
+                    issues++;
+                    $(this).after('<div class="alert alert-danger" role="alert">El maximo de caractéres requeridos son '+$(this).data("lengthmax")+'.</div>');
+                    $(this).focus(function(){
+                        $(this).siblings('.alert-danger').remove();
+                    });
+                }
             }
         }
         return issues;

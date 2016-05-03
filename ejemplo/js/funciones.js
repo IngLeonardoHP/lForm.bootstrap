@@ -4,6 +4,7 @@ $("#registrar").click(function(){
       btn.cargando("Registrando",true,true);
       setTimeout(function(){
           btn.restaurar();
+          $.limpiarCampos(".panel-body");
       },2000);
   }
 });
