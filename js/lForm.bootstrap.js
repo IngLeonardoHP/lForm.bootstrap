@@ -1,6 +1,6 @@
 /*!
  *  lForm.bootstrap Por Leonardo Hernández @ingleonardohp - http://codeaink.com
- version 1.0.2
+ version 2.0.0
  * -------------------------- */
 $.extend({
     //Genera una cadena de caracteres alfanumero con opcion de caracteres especiales
