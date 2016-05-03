@@ -57,10 +57,9 @@
   	<div class="col-md-12">
       <h2 id="introduccion">Introducción</h2>
       <hr/>
-      <p><b>Plugins</b> para el manejo de <b>ajax en form de html5 para Bootstrap 3.x</b>, ofrece validacion de campos input, textarea y select. Tambien un generador de password alfanumerico con la opcion de incluir caracteres especiales.</p>
-      <p><b>lForm.bootstrap</b> maneja el estado del boton durante el envio de datos con opciones multiples para la visualización del usuario.</p>
-      <p>Se <b>mejora la velocidad con la que el desarrollador codifica</b> al momento de hacer validaciones</p>
-      <p>Proximamente incluirá en el ajax envio de imágenes</p>
+      <p><b>Plugins</b> para el manejo de ajax en form de html5 para Bootstrap 3.x, ofrece <b>conversión de formularios html5 a ajax</b> (incluye el envió de imágenes) validación de campos input, textarea y select. También un generador de password alfanumérico con la opción de incluir caracteres especiales.</p>
+      <p><b>lForm.bootstrap</b> maneja el estado del botón durante el envió de datos con opciones múltiples para la visualización del usuario.</p>
+      <p>Se <b>mejora la velocidad con la que el desarrollador codifica</b> al momento de hacer validaciones.</p>
     </div>
   </div>
   <div class="row">
@@ -87,7 +86,7 @@
         </tr>
         <tr>
           <td>
-            <b>$.validarInput(string)</b>
+            <b>$.validateInput(string)</b>
           </td>
           <td>
             <b>Retorna 0 o 1</b>
@@ -96,7 +95,7 @@
           </td>
           <td>
           <pre class="pre">
-            if($.validarInput('div')){
+            if($.validateInput('div')){
               console.log("No hay errores en los input's");
             }else{
               console.log("Error!");
@@ -121,7 +120,7 @@
         </tr>
         <tr>
           <td>
-            <b>$.limpiarCampos(string)</b>
+            <b>$.clearInput(string)</b>
           </td>
           <td>
             <b>Limpiar campos input del contenedor</b>
@@ -130,13 +129,13 @@
           </td>
           <td>
           <pre class="pre">
-            $.limpiarCampos("div");
+            $.clearInput("div");
           </pre>
           </td>
         </tr>
         <tr>
           <td>
-            <b>$(button).cargando(string,boolean,boolean)</b>
+            <b>$(button).loading(string,boolean,boolean)</b>
           </td>
           <td>
             <b>Inicializa el btn cargando</b>
@@ -145,36 +144,36 @@
           </td>
           <td>
           <pre class="pre">
-            $("button").cargando("cargando",true,true);
+            $("button").loading("cargando",true,true);
           </pre>
           </td>
         </tr>
         <tr>
           <td>
-            <b>$(button).restaurar(string,boolean,boolean)</b>
+            <b>$(button).restore(string,boolean,boolean)</b>
           </td>
           <td>
             <b>Restaura el btn a sus valores iniciales.</b>
           </td>
           <td>
           <pre class="pre">
-            $("button").restaurar();
+            $("button").restore();
           </pre>
           </td>
         </tr>
         <tr class="success">
           <td>
-            <i class="glyphicon glyphicon-heart"></i> <b>$.lFormAjaxMagic(string)</b>
+            <i class="glyphicon glyphicon-heart"></i> <b>$.lFormAjaxMagic(string,function[,boolean,boolean])</b>
           </td>
           <td>
-            <b>Recibe el id de un formulario</b>
+            <b>Recibe el id de un formulario y la funcion callback, esta funcion recibe json</b> Opcional: dos valores boolean, el primero activa la barra de progreso y el segundo vacía los campos (true por defecto).
             <br/>
             Convierte un formulario normal de HTML5 en un <b>ajax</b> (Incluye envio de imágenes)
             <br/><br/><p><b>Nota importante:</b> Debe tenerse cuidado con no olvidar agregar en el formulario el <b>"METHOD" y "ACTION"</b>, como tambien el <b>"name"</b> en cada input</p>
           </td>
           <td>
           <pre class="pre">
-            $.lFormAjaxMagic('#form');
+            $.lFormAjaxMagic('#form',callback,true,true);
           </pre>
           </td>
         </tr>
@@ -184,9 +183,9 @@
         <p>Ignorar un campo</p>
         <p>
         <pre class="pre">
-          <b>data-ignorar="true"</b>
+          <b>data-disregard="true"</b>
           Dentro del input que se desea ignorar, Ejemplo:
-          &ltinput class="form-control" <b>placeholder="Este input sera ignorado"</b> id="inputIgnorado" type="text" <b>data-ignorar="true"</b>>
+          &ltinput class="form-control" <b>placeholder="Este input sera ignorado"</b> id="inputIgnorado" type="text" <b>data-disregard="true"</b>>
         </pre>
         </p>
       </blockquote>
@@ -262,11 +261,11 @@
       <pre class="pre">
 $("#registrar").click(function(){
   var btn=$(this);
-  if($.validarInput(".panel-body")){
-      btn.cargando("Registrando",true,true);
+  if($.validateInput(".panel-body")){
+      btn.loading("Registrando",true,true);
       setTimeout(function(){
-          btn.restaurar();
-          $.limpiarCampos(".panel-body");
+          btn.restore();
+          $.clearInput(".panel-body");
       },2000);
   }
 });
@@ -320,10 +319,10 @@ $("#registrar").click(function(){
       <pre class="pre">
 $("#registrar").click(function(){
   var btn=$(this);
-  if($.validarInput(".panel-body")){
-      btn.cargando("Registrando",true,true);
+  if($.validateInput(".panel-body")){
+      btn.loading("Registrando",true,true);
       setTimeout(function(){
-          btn.restaurar();
+          btn.restore();
       },2000);
   }
 });
@@ -365,30 +364,30 @@ $("#generador").click(function(){
       <pre class="pre">
 $("#simple").click(function(){
   var btn=$(this);
-  btn.cargando("Mensaje");
+  btn.loading("Mensaje");
   setTimeout(function(){
-      btn.restaurar();
+      btn.restore();
   },2000);
 });
 $("#desactivo").click(function(){
   var btn=$(this);
-  btn.cargando("Mensaje",true);
+  btn.loading("Mensaje",true);
   setTimeout(function(){
-      btn.restaurar();
+      btn.restore();
   },2000);
 });
 $("#animado").click(function(){
   var btn=$(this);
-  btn.cargando("Registrando",false,true);
+  btn.loading("Registrando",false,true);
   setTimeout(function(){
-      btn.restaurar();
+      btn.restore();
   },2000);
 });
 $("#completo").click(function(){
   var btn=$(this);
-  btn.cargando("Registrando",true,true);
+  btn.loading("Registrando",true,true);
   setTimeout(function(){
-      btn.restaurar();
+      btn.restore();
   },2000);
 });
 $("#generador").click(function(){
@@ -508,7 +507,7 @@ $("#generador").click(function(){
 $(document).ready(function(){
   $.lFormAjaxMagic("#lForm1",callback);
   $.lFormAjaxMagic("#lForm2",callback);
-  $.lFormAjaxMagic("#lForm3",callback);
+  $.lFormAjaxMagic("#lForm3",callback,true);
 })
 
 function callback(datos){

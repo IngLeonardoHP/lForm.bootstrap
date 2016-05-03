@@ -27,7 +27,7 @@ $.extend({
         return password;
     },
     //analisa los input dentro de un contenedor, retorna 0 si existen incidencias o campos vacios
-    validarInput:function(contenedor){
+    validateInput:function(contenedor){
         if(contenedor){
             var issues=0;
             $(contenedor+" input").each(function(){
@@ -37,7 +37,7 @@ $.extend({
                 issues=$(this).function_val(issues);
             });
             $(contenedor+" select").each(function(){
-                if(!$(this).data("ignorar")){
+                if(!$(this).data("disregard")){
                     if($(this).val()==0){
                         issues++;
                         $(this).after('<div class="alert alert-danger" role="alert">Campo requerido.</div>');
@@ -54,7 +54,7 @@ $.extend({
             }
         }
     },
-    limpiarCampos:function(contenedor){
+    clearInput:function(contenedor){
         $(contenedor+" input").each(function(){
             $(this).val("");
             $(this).each(function(){
@@ -74,25 +74,29 @@ $.extend({
             });
         });
     },
-    lFormAjaxMagic:function(contenedor,callback){
-        $(contenedor).append('<div class="procesando hidden">'+
-            '<div class="col-lg-12">'+
-              '<div class="progress">'+
-                '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">'+
-                  '<span class="sr-only"></span>'+
+    lFormAjaxMagic:function(contenedor,callback,progreso,vaciar){
+        if(!vaciar){
+            vaciar=true;
+        }
+        if(progreso){
+            $(contenedor).append('<div class="procesando hidden">'+
+                '<div class="col-lg-12">'+
+                  '<div class="progress">'+
+                    '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">'+
+                      '<span class="sr-only"></span>'+
+                    '</div>'+
+                  '</div>'+
                 '</div>'+
-              '</div>'+
-            '</div>'+
-          '</div>');
-        $(contenedor+" .procesando").css("padding",($(contenedor).height()/2)+10);
-        
+              '</div>');
+            $(contenedor+" .procesando").css("padding",($(contenedor).height()/2)+10);
+        }
         $(contenedor).submit(function(e){
             e.preventDefault();
             if($.validarInput(contenedor)){
                 var url=$(this)[0].action;
                 var type=$(this)[0].method;
                 var formData=new FormData($(this)[0]);
-                $(contenedor +" .lForm-submit").cargando("Loading",true,true);
+                $(contenedor +" .lForm-submit").loading("Loading",true,true);
                 $.ajax({
                   url: url,  
                   type: type,
@@ -114,10 +118,14 @@ $.extend({
                   success: function(datos){
                     $(contenedor+" .procesando").addClass("hidden");
                     $(contenedor+" .procesando .progress-bar").css("width","0%");
-                    $(contenedor +" .lForm-submit").restaurar();
+                    $(contenedor +" .lForm-submit").restore();
+                    if(vaciar){
+                        $.clearInput(contenedor);
+                    }
                     callback(datos);
                   },
                   error:function(e){
+                    console.log(e);
                     alert(e.status);
                   }
                 });
@@ -125,22 +133,22 @@ $.extend({
         })
         
         $(contenedor +" .lForm-Vaciar").click(function(){
-            $.limpiarCampos(contenedor);
+            $.clearInput(contenedor);
         });
     }
 });
 
-//cargando de un btn
+//loading de un btn
 jQuery.fn.extend({
     //texto original del btn
     text_original:"",
-    //texto temporal o de "cargando..."
+    //texto temporal o de "loading..."
     text_temp:"",
-    //funcion para iniciar el cargando del btn
-    //el primer parametro representa el texto que tomara el btn, ejemplo "cargando"
-    //el segundo parametro representa si se desea desactivar el btn durante el cargando
+    //funcion para iniciar el loading del btn
+    //el primer parametro representa el texto que tomara el btn, ejemplo "loading"
+    //el segundo parametro representa si se desea desactivar el btn durante el loading
     //el tercer parametro reprensenta si se desea agregar una animacion al btn 
-    cargando:function(text,desactivar,animacion){
+    loading:function(text,desactivar,animacion){
         text_original=$(this).html();
         text_temp=text;
         $(this).html(text);
@@ -151,15 +159,15 @@ jQuery.fn.extend({
             $(this).append(' <i class="lF-icons giros">&#xe806;</i>');
         }
     },
-    //funcion para finalizar el cargando, restaura los valores del btn
-    restaurar:function(){
+    //funcion para finalizar el loading, restaura los valores del btn
+    restore:function(){
         $(this).prop("disabled",false);
         $(this).html(text_original);
     },
     //funcion complemetanria para validar los input y textarea
     function_val:function(issues){
         issues=issues;
-        if(!$(this).data("ignorar")){
+        if(!$(this).data("disregard")){
             if($(this).val().length<$(this).data("lengthmin")){
                 issues++;
                 $(this).after('<div class="alert alert-danger" role="alert">El minimo de caractéres requeridos son '+$(this).data("lengthmin")+'.</div>');
@@ -185,43 +193,5 @@ jQuery.fn.extend({
             }
         }
         return issues;
-    },
-    validarInputIndividual:function(contenedor){
-        if(contenedor){
-            var issues=0;
-            $(contenedor+" input").each(function(){
-                issues=$(this).function_val(issues);
-            });
-            $(contenedor+" textarea").each(function(){
-                issues=$(this).function_val(issues);
-            });
-            $(contenedor+" select").each(function(){
-                if(!$(this).data("ignorar")){
-                    if($(this).val()==0){
-                        issues++;
-                        $(this).after('<div class="alert alert-danger" role="alert">Campo requerido.</div>');
-                        $(this).focus(function(){
-                            $(this).siblings('.alert-danger').remove();
-                        });
-                    }
-                }
-            });
-            if(issues){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
-    },
-    limpiarCamposIndividual:function(contenedor){
-        $(contenedor+" input").each(function(){
-            $(this).val("");
-        });
-        $(contenedor+" textarea").each(function(){
-            $(this).val("");
-        });
-        $(contenedor+" select option[value=0]").each(function(){
-            $(this).attr("selected","selected");
-        });
-    },
+    }
 });

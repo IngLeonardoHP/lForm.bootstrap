@@ -1,10 +1,10 @@
 $("#registrar").click(function(){
   var btn=$(this);
-  if($.validarInput(".panel-body")){
-      btn.cargando("Registrando",true,true);
+  if($.validateInput(".panel-body")){
+      btn.loading("Registrando",true,true);
       setTimeout(function(){
-          btn.restaurar();
-          $.limpiarCampos(".panel-body");
+          btn.restore();
+          $.clearInput(".panel-body");
       },2000);
   }
 });
