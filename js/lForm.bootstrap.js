@@ -92,7 +92,7 @@ $.extend({
         }
         $(contenedor).submit(function(e){
             e.preventDefault();
-            if($.validarInput(contenedor)){
+            if($.validateInput(contenedor)){
                 var url=$(this)[0].action;
                 var type=$(this)[0].method;
                 var formData=new FormData($(this)[0]);
