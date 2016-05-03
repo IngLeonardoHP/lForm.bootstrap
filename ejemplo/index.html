@@ -34,6 +34,7 @@
             <li><a href="#simple">Simple</a></li>
             <li><a href="#clave">Contraseña</a></li>
             <li><a href="#btn">Button</a></li>
+            <li><a href="#ajaxmagico">Ajax Magico</a></li>
           </ul>
         </li>
       </ul>
@@ -77,29 +78,107 @@
         </pre>
         </p>
       </blockquote>
-      <h4>Palabras clave <b>JS</b></h4>
-      <blockquote>
-        <p>
-        <pre class="pre">
-          $.validarInput('#contenedor');
-          //Retorna 0 o 1, Esta funcion recibe un contenedor donde se encuentran los input`s a evaluar, si alguno esta vacio, lo señaliza y retorna 0, en caso contrario retorna 1.
-          $.validarTextarea('#contenedor');
-          //Retorna 0 o 1, Esta funcion recibe un contenedor donde se encuentran los textarea`s a evaluar, si alguno esta vacio, lo señaliza y retorna 0, en caso contrario retorna 1.
-          $.validarSelect('#contenedor');
-          //Retorna 0 o 1, Esta funcion recibe un contenedor donde se encuentran los select`s a evaluar, si la opcion seleccionada tiene valor 0, lo señaliza y retorna 0, en caso contrario retorna 1.
-          $.password(int,boolean);
-          //Retorna una cadena de caracteres alfanumerico, ejemplo "Lsj25a9y!.@ada", ideal generar claves, el primer parametro es la longitud de la cadena y el segundo es opcional y hace referencia a si se quieren o no caracteres especiales.
-
-          btn.cargando(string,boolean,boolean);
-          //Inicializa el btn cargando, recibe 3 parametros, el primero el texto que aparece en el btn mientras esta cargando, el segundo si se desea desactivar el btn durante la carga y el ultimo si se deseea animar el btn.
-          btn.restaurar();
-          //Restaura el btn a sus valores iniciales.
-
-          $.limpiarCampos(".panel-body");
-          //Limpiar campos input del contenedor
-        </pre>
-        </p>
-      </blockquote>
+      <h4>Key words <b>JS</b></h4>
+      <table class="table table-condensed">
+        <tr>
+          <td><b>key</b></td>
+          <td><b>Uso</b></td>
+          <td><b>Ejemplo</b></td>
+        </tr>
+        <tr>
+          <td>
+            <b>$.validarInput(string)</b>
+          </td>
+          <td>
+            <b>Retorna 0 o 1</b>
+            <br/>
+            Esta funcion recibe un contenedor donde se encuentran los input`s a evaluar, si alguno esta vacio, lo señaliza y retorna 0, en caso contrario retorna 1.
+          </td>
+          <td>
+          <pre class="pre">
+            if($.validarInput('div')){
+              console.log("No hay errores en los input's");
+            }else{
+              console.log("Error!");
+            }ç
+          </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>$.password(int,boolean)</b>
+          </td>
+          <td>
+            <b>Retorna un string</b>
+            <br/>
+            Generar claves, ejemplo "Lsj25a9y!.@ada", el primer parametro es la longitud de la cadena y el segundo es opcional y hace referencia a si se quieren o no caracteres especiales.
+          </td>
+          <td>
+          <pre class="pre">
+            alert($.password(12,true));
+          </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>$.limpiarCampos(string)</b>
+          </td>
+          <td>
+            <b>Limpiar campos input del contenedor</b>
+            <br/>
+            Recibe el contenedor de los input's que seran limpiados.
+          </td>
+          <td>
+          <pre class="pre">
+            $.limpiarCampos("div");
+          </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>$(element).cargando(string,boolean,boolean)</b>
+          </td>
+          <td>
+            <b>Inicializa el btn cargando</b>
+            <br/>
+            Recibe 3 parametros, el primero es el texto que aparece en el button mientras este cargando, el segundo si se desea desactivar el button durante la carga y el ultimo si se deseea animar el button.
+          </td>
+          <td>
+          <pre class="pre">
+            $("button").cargando("cargando",true,true);
+          </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>$(element).restaurar(string,boolean,boolean)</b>
+          </td>
+          <td>
+            <b>Restaura el btn a sus valores iniciales.</b>
+          </td>
+          <td>
+          <pre class="pre">
+            $("button").restaurar();
+          </pre>
+          </td>
+        </tr>
+        <tr class="success">
+          <td>
+            <i class="glyphicon glyphicon-heart"></i> <b>$.lFormAjaxMagic(string)</b>
+          </td>
+          <td>
+            <b>Recibe el id de un formulario</b>
+            <br/>
+            Convierte un formulario normal de HTML5 en un <b>ajax</b> (Incluye envio de imagenes)
+            <br/><br/><p><b>Nota importante:</b> Debe tenerse cuidado con no olvidar agregar en el formulario el <b>"METHOD" y "ACTION"</b>, como tambien el <b>"name"</b> en cada input</p>
+          </td>
+          <td>
+          <pre class="pre">
+            $.lFormAjaxMagic('#form');
+          </pre>
+          </td>
+        </tr>
+      </table>
       <h4>Opciones <b>HTML5</b></h4>
       <blockquote>
         <p>Ignorar un campo</p>
@@ -131,7 +210,7 @@
     <div class="col-md-12">
       <h2>Ejemplos</h2>
       <hr/>
-      <h4 id="simple">Simple <a href="ejemplo1.html">Ver</a></h4>
+      <h4 id="simple">Simple <small>con maximo y minimo de caractéres</small> <a href="ejemplo1.html">Ver</a></h4>
       <p>index.html</p>
       <pre class="pre">
 &lt!DOCTYPE html>
@@ -315,6 +394,127 @@ $("#completo").click(function(){
 $("#generador").click(function(){
   alert($.password(12,true));
 });
+      </pre>
+
+
+
+      <h4 id="ajaxmagico">Ajax magico <small>lFormAjaxMagic</small> <a href="ejemplo4.html">Ver</a></h4>
+      <p>index.html</p>
+      <pre class="pre">
+&lt!DOCTYPE html>
+&lthtml>
+&lthead>
+  &lttitle>lForm.bootstrap&lt/title>
+  &ltmeta charset="utf-8" />
+  &ltscript src="js/jquery-1.11.3.min.js">&lt/script>
+  &ltlink rel="stylesheet" href="dist/css/bootstrap.min.css">
+  &ltscript src="dist/js/bootstrap.min.js">&lt/script>
+  &ltlink rel="stylesheet" href="../css/lForm.bootstrap.css">
+  &ltscript type="text/javascript" src="../js/lForm.bootstrap.js">&lt/script>
+&lt/head>
+  &ltbody>
+  &ltcenter>&lth1>Ejemplo 4: lFormAjaxMagic &ltsmall>ajax magico&lt/small>&lt/h1>&lt/center>
+  &ltdiv class="container">
+    &ltdiv class="row">
+      &ltdiv class="col-lg-12" style="border: 1px solid #000; padding-bottom: 20px;">
+      &lth3>Form 1: &ltsmall>Input, textarea y select&lt/small>&lt/h3>
+        &ltform method="post" action="php/url.php" id="lForm1">
+          &ltdiv class="form-group">
+              &ltinput class="form-control" placeholder="Nombre" name="inputNombre" type="text" data-lengthMax="12">
+          &lt/div>
+          &ltdiv class="form-group">
+              &ltinput class="form-control" placeholder="Cedula" name="inputCedula" type="text"  data-lengthMin="4">
+          &lt/div>
+          &ltdiv class="form-group">
+              &ltinput class="form-control" placeholder="email" name="inputEmail" type="text" data-ignorar="true">
+          &lt/div>
+          &ltdiv class="form-group">
+              &ltinput class="form-control" name="inputPassword" placeholder="contraseña" type="password" value="" >
+          &lt/div>
+          &ltdiv class="form-group">
+              &lttextarea class="form-control" name="textarea">&lt/textarea>
+          &lt/div>
+          &ltdiv class="form-group">
+              &ltselect class="form-control">
+                &ltoption value="0">0&lt/option>
+                &ltoption value="1">1&lt/option>
+                &ltoption value="2">2&lt/option>
+                &ltoption value="3">3&lt/option>
+              &lt/select>
+          &lt/div>
+          &ltbutton class="login-lightbox btn btn-primary lForm-submit" id="registrar">Registrar &lt/button>
+          &lta href="#!" class="login-lightbox btn btn-default lForm-Vaciar">Vaciar campo&lt/a>
+        &lt/form>
+      &lt/div>
+      &ltdiv class="col-lg-6" style="border: 1px solid #000; padding-bottom: 20px;">
+      &lth3>Form 2: &ltsmall>Input con radio y checkbox&lt/small>&lt/h3>
+        &ltform method="post" action="php/url.php" id="lForm2">
+          &ltdiv class="form-group">
+              &ltinput class="form-control" placeholder="Nombre" name="inputNombre" type="text">
+          &lt/div>
+          &ltdiv class="form-group">
+              &ltinput class="form-control" placeholder="Cedula" name="inputCedula" type="text">
+          &lt/div>
+          &ltdiv class="checkbox">
+            &ltlabel>
+              &ltinput type="checkbox"> Check me out
+            &lt/label>
+          &lt/div>
+          &ltdiv class="radio">
+            &ltlabel>
+              &ltinput type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+              Option one is this and that&mdash;be sure to include why it's great
+            &lt/label>
+          &lt/div>
+          &ltdiv class="radio">
+            &ltlabel>
+              &ltinput type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+              Option two can be something else and selecting it will deselect option one
+            &lt/label>
+          &lt/div>
+          &ltbutton class="login-lightbox btn btn-primary lForm-submit" id="registrar">Registrar &lt/button>
+          &lta href="#!" class="login-lightbox btn btn-default lForm-Vaciar">Vaciar campo&lt/a>
+        &lt/form>
+      &lt/div>
+      &ltdiv class="col-lg-6" style="border: 1px solid #000; padding-bottom: 20px;">
+      &lth3>Form 3&lt/h3>
+        &ltform method="post" action="php/url.php" id="lForm3">
+          &ltdiv class="form-group">
+              &ltinput class="form-control" placeholder="Nombre" name="inputNombre" type="text">
+          &lt/div>
+          &ltdiv class="form-group">
+              &ltinput class="form-control" placeholder="Cedula" name="inputCedula" type="text">
+          &lt/div>
+          &ltdiv class="form-group">
+            &ltinput type="file" name="imagen" id="exampleInputFile">
+          &lt/div>
+          &ltbutton class="login-lightbox btn btn-primary lForm-submit" id="registrar">Registrar &lt/button>
+          &lta href="#!" class="login-lightbox btn btn-default lForm-Vaciar">Vaciar campo&lt/a>
+        &lt/form>
+      &lt/div>
+    &lt/div>
+    &ltdiv class="row">
+      &ltdiv class="col-lg-12">
+        &lth2>lForm.bootstrap &ltsmall>Leonardo Hernandez&lt/small>&lt/h2>
+      &lt/div>
+    &lt/div>
+  &lt/div>
+  &lt/body>
+&lt/html>
+&ltscript type="text/javascript" src="js/funciones4.js">&lt/script>
+      </pre>
+      <p>funciones4.js</p>
+      <pre class="pre">
+$(document).ready(function(){
+  $.lFormAjaxMagic("#lForm1",callback);
+  $.lFormAjaxMagic("#lForm2",callback);
+  $.lFormAjaxMagic("#lForm3",callback);
+})
+
+function callback(datos){
+  console.log(datos);
+  alert("Listo!");
+}
       </pre>
     </div>
   </div>

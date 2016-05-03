@@ -1,6 +1,6 @@
 /*!
  *  lForm.bootstrap Por Leonardo Hernández @ingleonardohp - http://codeaink.com
- version 1.0.1
+ version 1.0.2
  * -------------------------- */
 $.extend({
     //Genera una cadena de caracteres alfanumero con opcion de caracteres especiales
@@ -57,12 +57,75 @@ $.extend({
     limpiarCampos:function(contenedor){
         $(contenedor+" input").each(function(){
             $(this).val("");
+            $(this).each(function(){
+                $(this).siblings('.alert-danger').remove();
+            });
         });
         $(contenedor+" textarea").each(function(){
             $(this).val("");
+            $(this).each(function(){
+                $(this).siblings('.alert-danger').remove();
+            });
         });
         $(contenedor+" select option[value=0]").each(function(){
             $(this).attr("selected","selected");
+            $(contenedor+" select").each(function(){
+                $(this).siblings('.alert-danger').remove();
+            });
+        });
+    },
+    lFormAjaxMagic:function(contenedor,callback){
+        $(contenedor).append('<div class="procesando hidden">'+
+            '<div class="col-lg-12">'+
+              '<div class="progress">'+
+                '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">'+
+                  '<span class="sr-only"></span>'+
+                '</div>'+
+              '</div>'+
+            '</div>'+
+          '</div>');
+        $(contenedor+" .procesando").css("padding",($(contenedor).height()/2)+10);
+        
+        $(contenedor).submit(function(e){
+            e.preventDefault();
+            if($.validarInput(contenedor)){
+                var url=$(this)[0].action;
+                var type=$(this)[0].method;
+                var formData=new FormData($(this)[0]);
+                $(contenedor +" .lForm-submit").cargando("Loading",true,true);
+                $.ajax({
+                  url: url,  
+                  type: type,
+                  data: formData,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  xhr: function(){
+                    $(contenedor+" .procesando").removeClass("hidden");
+                    var xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function(evt){
+                      if (evt.lengthComputable) {
+                        var percentComplete = evt.loaded / evt.total;
+                        $(contenedor+" .procesando .progress-bar").css("width",(percentComplete*100)+"%");
+                      }
+                    }, false);
+                    return xhr;
+                  },
+                  success: function(datos){
+                    $(contenedor+" .procesando").addClass("hidden");
+                    $(contenedor+" .procesando .progress-bar").css("width","0%");
+                    $(contenedor +" .lForm-submit").restaurar();
+                    callback(datos);
+                  },
+                  error:function(e){
+                    alert(e.status);
+                  }
+                });
+            }
+        })
+        
+        $(contenedor +" .lForm-Vaciar").click(function(){
+            $.limpiarCampos(contenedor);
         });
     }
 });
@@ -122,5 +185,43 @@ jQuery.fn.extend({
             }
         }
         return issues;
-    }
+    },
+    validarInputIndividual:function(contenedor){
+        if(contenedor){
+            var issues=0;
+            $(contenedor+" input").each(function(){
+                issues=$(this).function_val(issues);
+            });
+            $(contenedor+" textarea").each(function(){
+                issues=$(this).function_val(issues);
+            });
+            $(contenedor+" select").each(function(){
+                if(!$(this).data("ignorar")){
+                    if($(this).val()==0){
+                        issues++;
+                        $(this).after('<div class="alert alert-danger" role="alert">Campo requerido.</div>');
+                        $(this).focus(function(){
+                            $(this).siblings('.alert-danger').remove();
+                        });
+                    }
+                }
+            });
+            if(issues){
+                return 0;
+            }else{
+                return 1;
+            }
+        }
+    },
+    limpiarCamposIndividual:function(contenedor){
+        $(contenedor+" input").each(function(){
+            $(this).val("");
+        });
+        $(contenedor+" textarea").each(function(){
+            $(this).val("");
+        });
+        $(contenedor+" select option[value=0]").each(function(){
+            $(this).attr("selected","selected");
+        });
+    },
 });
