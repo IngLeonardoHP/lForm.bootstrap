@@ -2,6 +2,8 @@
 
 Convierte un `form` en un `ajax` con una linea de código. Ese linea incluye, validaciones de los input`s (Es posible ignorar input si asi se desea) y envió de imágenes. Tambien retorna un callback con los datos 
 
+[Ejemplo](http://lform.webcindario.com/index.php)
+
 **Plugins **para el manejo de ajax en form de html5 para Bootstrap 3.x, ofrece **conversión de formularios html5 a ajax** (incluye el envió de imágenes) validación de campos input, textarea y select. También un generador de password alfanumérico con la opción de incluir caracteres especiales.
 
 lForm.bootstrap maneja el estado del botón durante el envió de datos con opciones múltiples para la visualización del usuario.

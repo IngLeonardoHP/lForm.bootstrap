@@ -170,6 +170,8 @@
             <br/>
             Convierte un formulario normal de HTML5 en un <b>ajax</b> (Incluye envio de imágenes)
             <br/><br/><p><b>Nota importante:</b> Debe tenerse cuidado con no olvidar agregar en el formulario el <b>"METHOD" y "ACTION"</b>, como tambien el <b>"name"</b> en cada input</p>
+            <br/>
+            Se debe identificar el submit del formulario con la clase ".lForm-submit" y el button para vaciar los campos con ".lForm-clear"
           </td>
           <td>
           <pre class="pre">
@@ -442,7 +444,7 @@ $("#generador").click(function(){
               &lt/select>
           &lt/div>
           &ltbutton class="login-lightbox btn btn-primary lForm-submit" id="registrar">Registrar &lt/button>
-          &lta href="#!" class="login-lightbox btn btn-default lForm-Vaciar">Vaciar campo&lt/a>
+          &lta href="#!" class="login-lightbox btn btn-default lForm-clear">Vaciar campo&lt/a>
         &lt/form>
       &lt/div>
       &ltdiv class="col-lg-6" style="border: 1px solid #000; padding-bottom: 20px;">
@@ -472,7 +474,7 @@ $("#generador").click(function(){
             &lt/label>
           &lt/div>
           &ltbutton class="login-lightbox btn btn-primary lForm-submit" id="registrar">Registrar &lt/button>
-          &lta href="#!" class="login-lightbox btn btn-default lForm-Vaciar">Vaciar campo&lt/a>
+          &lta href="#!" class="login-lightbox btn btn-default lForm-clear">Vaciar campo&lt/a>
         &lt/form>
       &lt/div>
       &ltdiv class="col-lg-6" style="border: 1px solid #000; padding-bottom: 20px;">
@@ -488,7 +490,7 @@ $("#generador").click(function(){
             &ltinput type="file" name="imagen" id="exampleInputFile">
           &lt/div>
           &ltbutton class="login-lightbox btn btn-primary lForm-submit" id="registrar">Registrar &lt/button>
-          &lta href="#!" class="login-lightbox btn btn-default lForm-Vaciar">Vaciar campo&lt/a>
+          &lta href="#!" class="login-lightbox btn btn-default lForm-clear">Vaciar campo&lt/a>
         &lt/form>
       &lt/div>
     &lt/div>
