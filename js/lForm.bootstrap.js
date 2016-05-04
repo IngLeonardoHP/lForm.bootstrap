@@ -132,7 +132,7 @@ $.extend({
             }
         })
         
-        $(contenedor +" .lForm-Vaciar").click(function(){
+        $(contenedor +" .lForm-clear").click(function(){
             $.clearInput(contenedor);
         });
     }
