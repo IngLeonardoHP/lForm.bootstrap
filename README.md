@@ -40,3 +40,14 @@ Maxima
 
 Minima
 `data-lengthMin="int"`
+
+Validar solo numero enteros, reales y caractéres, agregando una clase en el input
+
+Solo numeros
+`.onlyNumber`
+
+Solo numeros reales
+`.onlyDecimal`
+
+Solo caractéres
+`.onlyCharacter`
