@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>lForm.bootstrap</title>
+  <meta charset="utf-8" />
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+  <script src="dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/lForm.bootstrap.css">
+  <script type="text/javascript" src="../js/lForm.bootstrap.js"></script>
+</head>
+  <body>
+  <div class="col-lg-12">
+    <center><h2>Ejemplos completos</h2></center>
+  </div>
+  <div class="col-lg-12">
+    <div class="col-lg-4">
+      <h1>1. Ejemplo HTML</h1>
+      <fieldset>
+        <form>
+          <div class="form-group">
+              <input class="form-control onlyCharacter" placeholder="Solo caracteres" id="inputText" type="text">
+          </div>
+          <div class="form-group">
+              <input class="form-control onlyNumber" placeholder="Solo numeros" id="inputText" type="text">
+          </div>
+          <div class="form-group">
+              <input class="form-control onlyDecimal" placeholder="Solo numeros reales" id="inputText" type="text">
+          </div>
+        </form>
+      </fieldset>
+    </div>
+    <div class="col-lg-8">
+      <h1>Codigo</h1>
+      <pre>
+&ltform>
+  &ltdiv class="form-group">
+      &ltinput class="form-control onlyCharacter" placeholder="Solo caracteres" id="inputText" type="text">
+  &lt/div>
+  &ltdiv class="form-group">
+      &ltinput class="form-control onlyNumber" placeholder="Solo numeros" id="inputText" type="text">
+  &lt/div>
+  &ltdiv class="form-group">
+      &ltinput class="form-control onlyDecimal" placeholder="Solo numeros reales" id="inputText" type="text">
+  &lt/div>
+&lt/form>
+      </pre>
+    </div>
+    <div class="col-lg-12">
+      <blockquote>
+      Se agrega la clase ".onlyCharacter" para caracteres, ".onlyNumber" para numeros y ".onlyDecimal" para numeros reales
+      </blockquote>
+    </div>
+  </div>
+
+
+  <div class="col-lg-12">
+    <div class="col-lg-4">
+      <h1>2. Ejemplo HTML y JS</h1>
+      <h3>Button</h3>
+      <fieldset>
+        <button class="btn btn-default" id="simple">Simple </button>
+        <button class="btn btn-primary" id="desactivo">Desactivo </button>
+        <button class="btn btn-success" id="animado">Animado </button>
+        <button class="btn btn-danger" id="completo">completo </button>
+        <button class="btn btn-default" id="Password">Password </button>
+        <br/><br/>
+        <button class="btn" id="restaurar">Restaurar</button>
+      </fieldset>
+    </div>
+    <div class="col-lg-4">
+      <h1>Codigo html</h1>
+      <pre>
+&ltbutton class="btn btn-default" id="simple">Simple &lt/button>
+&ltbutton class="btn btn-primary" id="desactivo">Desactivo &lt/button>
+&ltbutton class="btn btn-success" id="animado">Animado &lt/button>
+&ltbutton class="btn btn-danger" id="completo">completo &lt/button>
+&ltbutton class="btn btn-default" id="Password">Password &lt/button>
+&ltbr/>&ltbr/>
+&ltbutton class="btn" id="restaurar">Restaurar&lt/button>
+      </pre>
+    </div>
+    <div class="col-lg-4">
+      <h1>Codigo js</h1>
+      <pre>
+$("#simple").click(function(){
+  $(this).loading("Mensaje");
+});
+$("#desactivo").click(function(){
+  $(this).loading("Mensaje",true);
+});
+$("#animado").click(function(){
+  $(this).loading("Registrando",false,true);
+});
+$("#completo").click(function(){
+  $(this).loading("Registrando",true,true);
+});
+$("#Password").click(function(){
+  alert($.password(12,true));
+});
+      </pre>
+    </div>
+  </div>
+
+  <div class="col-lg-12">
+    <div class="col-lg-4">
+      <h1>3. Ejemplo HTML y JS</h1>
+      <h3>Validate form <small>validateInput, lengthMax, lengthMin, disregard y clearInput</small></h3>
+      <fieldset id="contenedor">
+        <div class="form-group">
+            <input class="form-control" placeholder="Minimo 2 caracteres" type="text" data-lengthMin="2">
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Maximo 6 caracteres" type="text" data-lengthMax="6">
+        </div>
+        <div class="form-group">
+            <input class="form-control onlyNumber" placeholder="Ignorar y solo numeros" type="text" data-disregard="true">
+        </div>
+        <button class="btn btn-default" id="enviar">Enviar</button>
+        <button class="btn btn-default" id="Limpiar">Limpiar</button>
+      </fieldset>
+    </div>
+    <div class="col-lg-4">
+      <h1>Codigo html</h1>
+      <pre>
+&ltfieldset id="contenedor">
+&ltdiv class="form-group">
+    &ltinput class="form-control" placeholder="Minimo 2 caracteres" type="text" data-lengthMin="2">
+&lt/div>
+&ltdiv class="form-group">
+    &ltinput class="form-control" placeholder="Maximo 6 caracteres" type="text" data-lengthMax="6">
+&lt/div>
+&ltdiv class="form-group">
+    &ltinput class="form-control onlyNumber" placeholder="Ignorar y solo numeros" type="text" data-disregard="true">
+&lt/div>
+&ltbutton class="btn btn-default" id="enviar">Enviar&lt/button>
+&ltbutton class="btn btn-default" id="Limpiar">Limpiar&lt/button>
+&lt/fieldset>
+      </pre>
+    </div>
+    <div class="col-lg-4">
+      <h1>Codigo js</h1>
+      <pre>
+$("#enviar").click(function(){
+  var btn=$(this);
+  if($.validateInput("#contenedor")){
+      btn.loading("Registrando",true,true);
+      setTimeout(function(){
+          btn.restore();
+          $.clearInput(".panel-body");
+      },2000);
+  }
+});
+$("#Limpiar").click(function(){
+  $.clearInput("#contenedor");
+});
+      </pre>
+    </div>
+  </div>
+
+  <div class="col-lg-12">
+    <div class="col-lg-4">
+      <h1>4. Ejemplo HTML y JS</h1>
+      <h3>Form a Ajax <small>lFormAjaxMagic</small></h3>
+      <form method="post" action="php/url.php" id="lForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <input class="form-control" placeholder="Nombre" name="inputNombre" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Cedula" name="inputCedula" type="text">
+        </div>
+        <div class="form-group">
+          <input type="file" name="imagen" id="exampleInputFile">
+        </div>
+        <button class="login-lightbox btn btn-primary lForm-submit" id="registrar">Registrar </button>
+        <a href="#!" class="login-lightbox btn btn-default lForm-clear">Vaciar campo</a>
+      </form>
+    </div>
+    <div class="col-lg-4">
+      <h1>Codigo html</h1>
+      <pre>
+&ltform method="post" action="php/url.php" id="lForm" enctype="multipart/form-data">
+  &ltdiv class="form-group">
+      &ltinput class="form-control" placeholder="Nombre" name="inputNombre" type="text">
+  &lt/div>
+  &ltdiv class="form-group">
+      &ltinput class="form-control" placeholder="Cedula" name="inputCedula" type="text">
+  &lt/div>
+  &ltdiv class="form-group">
+    &ltinput type="file" name="imagen" id="exampleInputFile">
+  &lt/div>
+  &ltbutton class="login-lightbox btn btn-primary lForm-submit" id="registrar">Registrar &lt/button>
+  &lta href="#!" class="login-lightbox btn btn-default lForm-clear">Vaciar campo&lt/a>
+&lt/form>
+      </pre>
+    </div>
+    <div class="col-lg-4">
+      <h1>Codigo js</h1>
+      <pre>
+$(document).ready(function(){
+  $.lFormAjaxMagic("#lForm",callback,true,true);
+})
+
+function callback(datos){
+  console.log(datos);
+  alert("Listo!");
+}
+      </pre>
+    </div>
+    <div class="col-lg-12">
+      <blockquote>
+      Convierte un form de html en ajax con "$.lFormAjaxMagic("#div",callback,true,true)". <b>Debe tenerse en cuenta que el form debe estar bien estructurado, es decir, declarado el "method", "action", "name" (para los input), button con la clase ".lForm-submit", y opcional button con la clase ".lForm-clear"</b>
+      </blockquote>
+    </div>
+  </div>
+
+
+</body>
+</html>
+<script type="text/javascript">
+  $("#simple").click(function(){
+    $(this).loading("Mensaje");
+  });
+  $("#desactivo").click(function(){
+    $(this).loading("Mensaje",true);
+  });
+  $("#animado").click(function(){
+    $(this).loading("Registrando",false,true);
+  });
+  $("#completo").click(function(){
+    $(this).loading("Registrando",true,true);
+  });
+  $("#Password").click(function(){
+    alert($.password(12,true));
+  });
+  $("#restaurar").click(function(){
+    $("button").each(function(){
+      $(this).each(function(){
+        $(this).restore();
+      })
+    })
+  });
+
+  $("#enviar").click(function(){
+    var btn=$(this);
+    if($.validateInput("#contenedor")){
+        btn.loading("Registrando",true,true);
+        setTimeout(function(){
+            btn.restore();
+            $.clearInput(".panel-body");
+        },2000);
+    }
+  });
+  $("#Limpiar").click(function(){
+    $.clearInput("#contenedor");
+  });
+
+$(document).ready(function(){
+  $.lFormAjaxMagic("#lForm",callback,true);
+})
+
+function callback(datos){
+  console.log(datos);
+  alert("Listo!");
+}
+</script>

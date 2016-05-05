@@ -1,6 +1,6 @@
 /*!
  *  lForm.bootstrap Por Leonardo Hernández @ingleonardohp - http://codeaink.com
- version 2.0.0
+ version 2.0.2
  * -------------------------- */
 $.extend({
     //Genera una cadena de caracteres alfanumero con opcion de caracteres especiales
@@ -143,7 +143,7 @@ jQuery.fn.extend({
     //texto original del btn
     text_original:"",
     //texto temporal o de "loading..."
-    text_temp:"",
+    text_temp:"",   
     //funcion para iniciar el loading del btn
     //el primer parametro representa el texto que tomara el btn, ejemplo "loading"
     //el segundo parametro representa si se desea desactivar el btn durante el loading
@@ -193,5 +193,48 @@ jQuery.fn.extend({
             }
         }
         return issues;
+    },
+    onlyValidateNumber:function(){
+        $(this).keydown(function (e) {
+            if((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode==8  || e.keyCode==116 || e.keyCode==9 || e.keyCode==13 || e.keyCode==17 || e.keyCode==16){
+                return;
+            }else{
+                e.preventDefault();
+            }
+        });
+    },
+    onlyValidateDecimal:function(){
+        $(this).keydown(function (e) {
+            if((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode==8  || e.keyCode==116 || e.keyCode==9 || e.keyCode==13 || e.keyCode==190 || e.keyCode==46 || e.keyCode==17 || e.keyCode==16){
+                return;
+            }else{
+                e.preventDefault();
+            }
+        });
+    },
+    onlyValidateCharacter:function(){
+        $(this).keydown(function (e) {
+            if((e.keyCode >= 65 && e.keyCode <= 122) || e.keyCode==8  || e.keyCode==116 || e.keyCode==9 || e.keyCode==13 || e.keyCode==241 || e.keyCode==192 || e.keyCode==17 || e.keyCode==16){
+                return;
+            }else{
+                e.preventDefault();
+            }
+        });
     }
 });
+
+$(document).ready(function(){
+    $(".onlyNumber").each(function(){
+        $(this).onlyValidateNumber();
+    })
+    $(".onlyDecimal").each(function(){
+        if($(this).data("separator")){
+            $(this).onlyValidateDecimal($(this).data("separator"));
+        }else{
+            $(this).onlyValidateDecimal();
+        }
+    })
+    $(".onlyCharacter").each(function(){
+        $(this).onlyValidateCharacter();
+    })
+})

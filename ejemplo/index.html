@@ -60,6 +60,7 @@
       <p><b>Plugins</b> para el manejo de ajax en form de html5 para Bootstrap 3.x, ofrece <b>conversión de formularios html5 a ajax</b> (incluye el envió de imágenes) validación de campos input, textarea y select. También un generador de password alfanumérico con la opción de incluir caracteres especiales.</p>
       <p><b>lForm.bootstrap</b> maneja el estado del botón durante el envió de datos con opciones múltiples para la visualización del usuario.</p>
       <p>Se <b>mejora la velocidad con la que el desarrollador codifica</b> al momento de hacer validaciones.</p>
+      <a href="ejemploCompleto.html">Ver ejemplo completo</a>
     </div>
   </div>
   <div class="row">
@@ -197,11 +198,29 @@
         <pre class="pre">
           <b>data-lengthMax="int"</b>
           Dentro del input que se desea limitar, Ejemplo:
-          &ltinput class="form-control" <b>placeholder="Este input sera limitado"</b> id="inputIgnorado" type="text" <b>data-lengthMax="12"</b>>
+          &ltinput class="form-control" <b>placeholder="Este input sera limitado"</b> type="text" <b>data-lengthMax="12"</b>>
 
           <b>data-lengthMin="int"</b>
           Dentro del input que se desea limitar, Ejemplo:
-          &ltinput class="form-control" <b>placeholder="Este input sera limitado"</b> id="inputIgnorado" type="text" <b>data-lengthMin="2"</b>>
+          &ltinput class="form-control" <b>placeholder="Este input sera limitado"</b> type="text" <b>data-lengthMin="2"</b>>
+        </pre>
+        </p>
+      </blockquote>
+      <blockquote>
+        <p>Solo numero enteros, reales y caractéres</p>
+        <p>
+        <pre class="pre">
+          <b>.onlyNumber</b>
+          Agregar la clase al input, Ejemplo:
+          &ltinput class="form-control <b>onlyNumber</b>" <b>placeholder="Este input sera solo numeros"</b> type="text">
+
+          <b>.onlyDecimal</b>
+          Agregar la clase al input, Ejemplo:
+          &ltinput class="form-control <b>onlyDecimal</b>" <b>placeholder="Este input sera solo numeros reales"</b> type="text">
+
+          <b>.onlyCharacter</b>
+          Agregar la clase al input, Ejemplo:
+          &ltinput class="form-control <b>onlyCharacter</b>" <b>placeholder="Este input sera solo caracteres"</b> type="text">
         </pre>
         </p>
       </blockquote>
