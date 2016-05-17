@@ -77,9 +77,6 @@ $.extend({
         });
     },
     lFormAjaxMagic:function(contenedor,callback,progreso,vaciar){
-        if(!vaciar){
-            vaciar=true;
-        }
         if(progreso){
             $(contenedor).append('<div class="procesando hidden">'+
                 '<div class="col-lg-12">'+
