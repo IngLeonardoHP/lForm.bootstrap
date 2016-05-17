@@ -1,6 +1,6 @@
 /*!
  *  lForm.bootstrap Por Leonardo Hernández @ingleonardohp - http://codeaink.com
- version 2.0.2
+ version 2.0.4
  * -------------------------- */
 $.extend({
     //Genera una cadena de caracteres alfanumero con opcion de caracteres especiales
@@ -40,8 +40,10 @@ $.extend({
                 if(!$(this).data("disregard")){
                     if($(this).val()==0){
                         issues++;
+                        $(this).addClass("lError");
                         $(this).after('<div class="alert alert-danger" role="alert">Campo requerido.</div>');
                         $(this).focus(function(){
+                            $(this).removeClass("lError");
                             $(this).siblings('.alert-danger').remove();
                         });
                     }
@@ -170,23 +172,29 @@ jQuery.fn.extend({
         if(!$(this).data("disregard")){
             if($(this).val().length<$(this).data("lengthmin")){
                 issues++;
+                $(this).addClass("lError");
                 $(this).after('<div class="alert alert-danger" role="alert">El minimo de caractéres requeridos son '+$(this).data("lengthmin")+'.</div>');
                 $(this).focus(function(){
+                    $(this).removeClass("lError");
                     $(this).siblings('.alert-danger').remove();
                 });
             }
             if($(this).val().length==0){
                 issues++;
+                $(this).addClass("lError");
                 $(this).after('<div class="alert alert-danger" role="alert">Campo requerido.</div>');
                 $(this).focus(function(){
+                    $(this).removeClass("lError");
                     $(this).siblings('.alert-danger').remove();
                 });
             }
             if($(this).data("lengthmax")){
                 if($(this).val().length>$(this).data("lengthmax")){
                     issues++;
+                    $(this).addClass("lError");
                     $(this).after('<div class="alert alert-danger" role="alert">El maximo de caractéres requeridos son '+$(this).data("lengthmax")+'.</div>');
                     $(this).focus(function(){
+                        $(this).removeClass("lError");
                         $(this).siblings('.alert-danger').remove();
                     });
                 }
@@ -196,7 +204,7 @@ jQuery.fn.extend({
     },
     onlyValidateNumber:function(){
         $(this).keydown(function (e) {
-            if((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode==8  || e.keyCode==116 || e.keyCode==9 || e.keyCode==13 || e.keyCode==17 || e.keyCode==16){
+            if((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode==8  || e.keyCode==116 || e.keyCode==9 || e.keyCode==13 || e.keyCode==17 || e.keyCode==16 || (e.keyCode>=96 && e.keyCode<=105)){
                 return;
             }else{
                 e.preventDefault();
@@ -205,7 +213,7 @@ jQuery.fn.extend({
     },
     onlyValidateDecimal:function(){
         $(this).keydown(function (e) {
-            if((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode==8  || e.keyCode==116 || e.keyCode==9 || e.keyCode==13 || e.keyCode==190 || e.keyCode==46 || e.keyCode==17 || e.keyCode==16){
+            if((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode==8  || e.keyCode==116 || e.keyCode==110 || e.keyCode==9 || e.keyCode==13 || e.keyCode==190 || e.keyCode==46 || e.keyCode==17 || e.keyCode==16 || (e.keyCode>=96 && e.keyCode<=105)){
                 return;
             }else{
                 e.preventDefault();

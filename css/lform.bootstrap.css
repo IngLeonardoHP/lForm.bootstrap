@@ -100,3 +100,9 @@
   position: absolute;
 
 }
+
+.lError{
+  position: relative;
+  border: 1px solid red;
+  box-shadow: 2px 2px 15px #999;
+}
