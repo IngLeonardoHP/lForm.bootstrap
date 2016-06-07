@@ -22,7 +22,10 @@
               <input class="form-control onlyCharacter" placeholder="Solo caracteres" id="inputText" type="text">
           </div>
           <div class="form-group">
-              <input class="form-control onlyNumber" placeholder="Solo numeros" id="inputText" type="text">
+              <input class="form-control onlyNumber" data-max="10" placeholder="Solo numeros" id="cantidad" type="text">
+          </div>
+          <div class="form-group">
+              <input class="form-control onlyNumber equals" placeholder="Igual al segundo input" data-target="#cantidad" type="text">
           </div>
           <div class="form-group">
               <input class="form-control onlyDecimal" placeholder="Solo numeros reales" id="inputText" type="text">
@@ -164,7 +167,10 @@ $("#Limpiar").click(function(){
       <h3>Form a Ajax <small>lFormAjaxMagic</small></h3>
       <form method="post" action="php/url.php" id="lForm" enctype="multipart/form-data">
         <div class="form-group">
-            <input class="form-control" placeholder="Nombre" name="inputNombre" type="text">
+            <input class="form-control" placeholder="Nombre" name="inputNombre" id="inputNombre" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control equals" data-target="#inputNombre" placeholder="Nombre" name="inputEquals" type="text">
         </div>
         <div class="form-group">
             <input class="form-control" placeholder="Cedula" name="inputCedula" type="text">

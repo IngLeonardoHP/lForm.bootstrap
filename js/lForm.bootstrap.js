@@ -1,6 +1,6 @@
 /*!
  *  lForm.bootstrap Por Leonardo Hernández @ingleonardohp - http://codeaink.com
- version 2.0.4
+ version 2.0.5
  * -------------------------- */
 $.extend({
     //Genera una cadena de caracteres alfanumero con opcion de caracteres especiales
@@ -91,7 +91,13 @@ $.extend({
         }
         $(contenedor).submit(function(e){
             e.preventDefault();
-            if($.validateInput(contenedor)){
+            var issuesCompare=0;
+            $(".equals").each(function(){
+                if(!$(this).equals_val()){
+                    issuesCompare++;
+                }
+            });
+            if($.validateInput(contenedor) && issuesCompare==0){    
                 var url=$(this)[0].action;
                 var type=$(this)[0].method;
                 var formData=new FormData($(this)[0]);
@@ -136,7 +142,7 @@ $.extend({
         });
     }
 });
-
+// var grupos=[];
 //loading de un btn
 jQuery.fn.extend({
     //texto original del btn
@@ -200,15 +206,29 @@ jQuery.fn.extend({
         return issues;
     },
     onlyValidateNumber:function(){
+        $(this).keyup(function(e){
+            if($(this).data("max")){
+                if($(this).data("max")<=$(this).val()){
+                    $(this).val($(this).data("max"));
+                }
+            }
+        });
         $(this).keydown(function (e) {
-            if((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode==8  || e.keyCode==116 || e.keyCode==9 || e.keyCode==13 || e.keyCode==17 || e.keyCode==16 || (e.keyCode>=96 && e.keyCode<=105)){
-                return;
+            if((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode==8  || e.keyCode==116 || e.keyCode==9 || e.keyCode==13 || e.keyCode==17 || e.keyCode==16 || e.keyCode==46 || (e.keyCode>=37 && e.keyCode<=40) || (e.keyCode>=96 && e.keyCode<=105)){
+                return
             }else{
                 e.preventDefault();
             }
         });
     },
     onlyValidateDecimal:function(){
+        $(this).keyup(function(e){
+            if($(this).data("max")){
+                if($(this).data("max")<=$(this).val()){
+                    $(this).val($(this).data("max"));
+                }
+            }
+        });
         $(this).keydown(function (e) {
             if((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode==8  || e.keyCode==116 || e.keyCode==110 || e.keyCode==9 || e.keyCode==13 || e.keyCode==190 || e.keyCode==46 || e.keyCode==17 || e.keyCode==16 || (e.keyCode>=96 && e.keyCode<=105)){
                 return;
@@ -219,13 +239,44 @@ jQuery.fn.extend({
     },
     onlyValidateCharacter:function(){
         $(this).keydown(function (e) {
-            if((e.keyCode >= 65 && e.keyCode <= 122) || e.keyCode==8  || e.keyCode==116 || e.keyCode==9 || e.keyCode==13 || e.keyCode==241 || e.keyCode==192 || e.keyCode==17 || e.keyCode==16){
+            if((e.keyCode >= 65 && e.keyCode <= 122) || e.keyCode==8  || e.keyCode==116 || e.keyCode==9 || e.keyCode==13 || e.keyCode==241 || e.keyCode==192 || e.keyCode==17 || e.keyCode==16 || e.keyCode==46 || (e.keyCode>=37 && e.keyCode<=40)){
                 return;
             }else{
                 e.preventDefault();
             }
         });
-    }
+    },
+    equals:function(){
+        $(this).blur(function () {
+            var objetivo=$(this).data("target");
+            if($(this).val()!=$(objetivo).val()){
+                $(this).addClass("lError");
+                $(objetivo).addClass("lError");
+                $(this).after('<div class="alert alert-danger" role="alert">Input inequal</div>');
+                $(this).focus(function(){
+                    $(this).removeClass("lError");
+                    $($(this).data("target")).removeClass("lError");
+                    $(this).siblings('.alert-danger').remove();
+                });
+            }
+        });
+    },
+    equals_val:function(){
+        var objetivo=$(this).data("target");
+        if($(this).val()!=$(objetivo).val()){
+            $(this).addClass("lError");
+            $(objetivo).addClass("lError");
+            $(this).after('<div class="alert alert-danger" role="alert">Input inequal</div>');
+            $(this).focus(function(){
+                $(this).removeClass("lError");
+                $($(this).data("target")).removeClass("lError");
+                $(this).siblings('.alert-danger').remove();
+            });
+            return false;
+        }else{
+            return true;
+        }
+    },
 });
 
 $(document).ready(function(){
@@ -241,5 +292,8 @@ $(document).ready(function(){
     })
     $(".onlyCharacter").each(function(){
         $(this).onlyValidateCharacter();
+    })
+    $(".equals").each(function(){
+        $(this).equals();
     })
 })
